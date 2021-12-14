@@ -101,12 +101,9 @@ if __name__ == "__main__":
         )    
         ndarr = img.mul(255).add_(0.5).clamp_(0, 255).squeeze(dim=0).permute(1, 2, 0).to('cpu', torch.uint8).numpy()
         im = Image.fromarray(ndarr)
-        #im.save(f"index-{args.index}_degree-{degree}_{args.out_prefix}.png")
         images.append(im)
         degree += degree_per_frame
-        
-    ### The following code is copied from https://dev.to/slushnys/how-to-create-a-video-from-an-image-with-python-26p5 ###
-        
+                
     write_to = 'output/{}.mp4'.format(args.out_prefix) # have a folder of output where output files could be stored.
 
     writer = imageio.get_writer(write_to, format='mp4', mode='I', fps=args.fps)
