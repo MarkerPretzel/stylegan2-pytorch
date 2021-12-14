@@ -90,6 +90,7 @@ if __name__ == "__main__":
     num_frames = args.fps * args.sec
     degree_per_frame = (args.degree * 2) / num_frames
     degree = - args.degree
+    images = []
     for frame in range(num_frames):
         direction = degree * eigvec[:, args.index].unsqueeze(0)
         img, _ = g(
@@ -101,10 +102,10 @@ if __name__ == "__main__":
         print(img.shape)
         ndarr = img.mul(255).add_(0.5).clamp_(0, 255).squeeze(dim=0).permute(1, 2, 0).to('cpu', torch.uint8).numpy()
         im = Image.fromarray(ndarr)
-        im.save(f"index-{args.index}_degree-{degree}_{args.out_prefix}.png")
+        #im.save(f"index-{args.index}_degree-{degree}_{args.out_prefix}.png")
+        images.append(im)
         
     ### The following code is copied from https://dev.to/slushnys/how-to-create-a-video-from-an-image-with-python-26p5 ###
-    images = []
     for f in os.listdir(args.dir_path):
         if f.endswith('png'):
             images.append(f)
@@ -114,7 +115,6 @@ if __name__ == "__main__":
     writer = imageio.get_writer(write_to, format='mp4', mode='I', fps=args.fps)
 
     for i in range(num_frames):
-        img = Image.open(images[i])
         print(img.size)
-        writer.append_data(np.asarray(img))
+        writer.append_data(np.asarray(images[i]))
     writer.close()
