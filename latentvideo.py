@@ -74,7 +74,7 @@ if __name__ == "__main__":
         truncation_latent=trunc,
         input_is_latent=True,
         )    
-        utils.save_image(
+        grid = utils.save_image(
         img,
         f"{args.out_prefix}_index-{args.index}_degree-{args.degree}_test.png",
         normalize=True,
