@@ -107,7 +107,6 @@ if __name__ == "__main__":
             input_is_latent=True,
         )   
         for j, idx in enumerate(args.idxs):
-            print(idx)
             if j != 0:
                 direction = degree * eigvec[:, idx].unsqueeze(0)
                 img, _ = g(
