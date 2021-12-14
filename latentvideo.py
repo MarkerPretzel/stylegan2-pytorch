@@ -114,5 +114,6 @@ if __name__ == "__main__":
     writer = imageio.get_writer(write_to, format='mp4', mode='I', fps=args.fps)
 
     for i in range(num_frames):
+        print(images[i].shape)
         writer.append_data(np.asarray(images[i]))
     writer.close()
