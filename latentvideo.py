@@ -7,6 +7,7 @@ from model import Generator
 
 import os
 import imageio
+import numpy as np
 
 
 if __name__ == "__main__":
