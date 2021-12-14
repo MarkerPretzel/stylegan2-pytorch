@@ -67,9 +67,6 @@ if __name__ == "__main__":
     latent = torch.randn(args.n_sample, 512, device=args.device)
     latent = g.get_latent(latent)
     
-    
-    dir_path = f"{args.out_prefix}_index-{args.index}_degree-{args.degree}/"
-    
     degree = - args.degree
     degree_per_frame = (args.degree * 2) // args.n_sample
     for frame in range(args.n_sample):
@@ -82,14 +79,15 @@ if __name__ == "__main__":
         )    
         grid = utils.save_image(
         img,
-        dir_path + f"{args.out_prefix}_index-{args.index}_degree-{degree}.png",
+        f"index-{args.index}_degree-{degree}_{args.out_prefix}.png",
         normalize=True,
         range=(-1, 1),
         nrow=0,
     )
         
     ### The following code is copied from http://tsaith.github.io/combine-images-into-a-video-with-python-3-and-opencv-3.html ###
-    ext = 'png'
+    dir_path = '.'
+    ext = f"{args.out_prefix}.png"
     output = f"{args.out_prefix}_index-{args.index}_degree-{args.degree}"
     
     images = []
