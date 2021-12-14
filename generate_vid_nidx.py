@@ -76,7 +76,7 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--idxs",
-        nargs='*',
+        nargs='+',
         type=int,
         default=[1],
         help="indices to travel",
