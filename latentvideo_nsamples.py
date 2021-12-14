@@ -104,9 +104,7 @@ if __name__ == "__main__":
         im = Image.fromarray(ndarr)
         images.append(im)
         degree += degree_per_frame
-        
-    ### The following code is copied from https://dev.to/slushnys/how-to-create-a-video-from-an-image-with-python-26p5 ###
-        
+                
     write_to = 'output/{}.mp4'.format(args.out_prefix) # have a folder of output where output files could be stored.
 
     writer = imageio.get_writer(write_to, format='mp4', mode='I', fps=args.fps)
