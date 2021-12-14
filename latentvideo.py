@@ -111,8 +111,8 @@ if __name__ == "__main__":
         out.write(frame) # Write out frame to video
 
         #cv2.imshow('video',frame)
-        if (cv2.waitKey(1) & 0xFF) == ord('q'): # Hit `q` to exit
-            break
+        #if (cv2.waitKey(1) & 0xFF) == ord('q'): # Hit `q` to exit
+        #    break
 
     # Release everything if job is finished
     out.release()
