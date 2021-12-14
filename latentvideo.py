@@ -92,7 +92,6 @@ if __name__ == "__main__":
     degree = - args.degree
     images = []
     for frame in range(num_frames):
-        print(degree)
         direction = degree * eigvec[:, args.index].unsqueeze(0)
         img, _ = g(
         [latent + direction],
@@ -104,6 +103,7 @@ if __name__ == "__main__":
         im = Image.fromarray(ndarr)
         #im.save(f"index-{args.index}_degree-{degree}_{args.out_prefix}.png")
         images.append(im)
+        degree += degree_per_frame
         
     ### The following code is copied from https://dev.to/slushnys/how-to-create-a-video-from-an-image-with-python-26p5 ###
     #for f in os.listdir(args.dir_path):
