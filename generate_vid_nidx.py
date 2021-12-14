@@ -106,7 +106,7 @@ if __name__ == "__main__":
             truncation_latent=trunc,
             input_is_latent=True,
         )   
-        for j, idx in enumerate(args.nidx):
+        for j, idx in enumerate(args.idxs):
             if j != 0:
                 direction = degree * eigvec[:, idx].unsqueeze(0)
                 img, _ = g(
