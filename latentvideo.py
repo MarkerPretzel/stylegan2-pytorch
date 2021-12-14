@@ -118,8 +118,8 @@ if __name__ == "__main__":
         if (cv2.waitKey(1) & 0xFF) == ord('q'): # Hit `q` to exit
             break
 
-# Release everything if job is finished
-out.release()
-cv2.destroyAllWindows()
+    # Release everything if job is finished
+    out.release()
+    cv2.destroyAllWindows()
 
-print("The output video is {}".format(output))
+    print("The output video is {}".format(output))
