@@ -37,7 +37,7 @@ if __name__ == "__main__":
         "--size", type=int, default=256, help="output image size of the generator"
     )
     parser.add_argument(
-        "-n", "--n_sample", type=int, default=7, help="number of samples created"
+        "-n", "--n_sample", type=int, default=1, help="please use latentvideo_nsamples for multiple samples"
     )
     parser.add_argument(
         "--truncation", type=float, default=0.7, help="truncation factor"
