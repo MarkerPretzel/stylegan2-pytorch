@@ -86,7 +86,7 @@ if __name__ == "__main__":
     latent = g.get_latent(latent)
    
     num_frames = args.fps * args.sec
-    degree_per_frame = (args.degree * 2) // num_frames
+    degree_per_frame = (args.degree * 2) / num_frames
     degree = - args.degree
     for frame in range(num_frames):
         direction = degree * eigvec[:, args.index].unsqueeze(0)
