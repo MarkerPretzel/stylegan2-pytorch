@@ -98,7 +98,8 @@ if __name__ == "__main__":
         truncation_latent=trunc,
         input_is_latent=True,
         )    
-        im = Image.fromarray(img.to('cpu', torch.uint8).numpy())
+        ndarr = img.mul(255).add_(0.5).clamp_(0, 255).permute(1, 2, 0).to('cpu', torch.uint8).numpy()
+        im = Image.fromarray(ndarr)
         im.save(f"index-{args.index}_degree-{degree}_{args.out_prefix}.png")
         
     ### The following code is copied from https://dev.to/slushnys/how-to-create-a-video-from-an-image-with-python-26p5 ###
