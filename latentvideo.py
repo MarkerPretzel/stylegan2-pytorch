@@ -96,7 +96,7 @@ if __name__ == "__main__":
     # Determine the width and height from the first image
     image_path = os.path.join(dir_path, images[0])
     frame = cv2.imread(image_path)
-    cv2.imshow('video',frame)
+    #cv2.imshow('video',frame)
     height, width, channels = frame.shape
 
     # Define the codec and create VideoWriter object
