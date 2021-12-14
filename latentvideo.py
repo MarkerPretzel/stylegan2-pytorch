@@ -8,6 +8,7 @@ from model import Generator
 import os
 import imageio
 import numpy as np
+from PIL import Image
 
 
 if __name__ == "__main__":
@@ -114,6 +115,6 @@ if __name__ == "__main__":
     writer = imageio.get_writer(write_to, format='mp4', mode='I', fps=args.fps)
 
     for i in range(num_frames):
-        print(images[i].shape)
-        writer.append_data(np.asarray(images[i]))
+        img = Image.open(images[i])
+        writer.append_data(np.asarray(img))
     writer.close()
