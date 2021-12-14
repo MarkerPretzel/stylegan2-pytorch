@@ -63,32 +63,21 @@ if __name__ == "__main__":
 
     latent = torch.randn(args.n_sample, 512, device=args.device)
     latent = g.get_latent(latent)
-
-    direction = args.degree * eigvec[:, args.index].unsqueeze(0)
-
-    img, _ = g(
-        [latent],
-        truncation=args.truncation,
-        truncation_latent=trunc,
-        input_is_latent=True,
-    )
-    img1, _ = g(
+    
+    degree = - args.degree
+    degree_per_frame = (args.degree * 2) // args.n_sample
+    for frame in args.n_sample:
+        direction = degree * eigvec[:, args.index].unsqueeze(0)
+        img, _ = g(
         [latent + direction],
         truncation=args.truncation,
         truncation_latent=trunc,
         input_is_latent=True,
-    )
-    img2, _ = g(
-        [latent - direction],
-        truncation=args.truncation,
-        truncation_latent=trunc,
-        input_is_latent=True,
-    )
-
-    grid = utils.save_image(
-        torch.cat([img1, img, img2], 0),
-        f"{args.out_prefix}_index-{args.index}_degree-{args.degree}.png",
+        )    
+        utils.save_image(
+        img,
+        f"{args.out_prefix}_index-{args.index}_degree-{args.degree}_test.png",
         normalize=True,
         range=(-1, 1),
-        nrow=args.n_sample,
+        nrow=0,
     )
