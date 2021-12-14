@@ -5,7 +5,6 @@ from torchvision import utils
 
 from model import Generator
 
-import cv2
 import os
 
 
@@ -78,10 +77,11 @@ if __name__ == "__main__":
 
     latent = torch.randn(args.n_sample, 512, device=args.device)
     latent = g.get_latent(latent)
-    
+   
+    num_frames = args.fps * args.degree
+    degree_per_frame = (args.degree * 2) // num_frames
     degree = - args.degree
-    degree_per_frame = (args.degree * 2) // args.n_sample
-    for frame in range(args.n_sample):
+    for frame in range(num_frames):
         direction = degree * eigvec[:, args.index].unsqueeze(0)
         img, _ = g(
         [latent + direction],
@@ -105,6 +105,6 @@ if __name__ == "__main__":
 
     writer = imageio.get_writer(write_to, format='mp4', mode='I', fps=args.fps)
 
-    for i in range(args.n_sample):
+    for i in range(num_frames):
         writer.append_data(np.asarray(images[i]))
     writer.close()
