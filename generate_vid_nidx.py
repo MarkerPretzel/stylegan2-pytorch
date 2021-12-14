@@ -99,7 +99,7 @@ if __name__ == "__main__":
     degree = - args.degree
     images = []
     for frame in range(num_frames):
-        direction = degree * eigvec[:, idx[0]].unsqueeze(0)
+        direction = degree * eigvec[:, idxs[0]].unsqueeze(0)
         img_all_idx, _ = g(
             [latent + direction],
             truncation=args.truncation,
