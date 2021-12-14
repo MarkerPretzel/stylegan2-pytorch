@@ -81,8 +81,6 @@ if __name__ == "__main__":
         img,
         f"index-{args.index}_degree-{degree}_{args.out_prefix}.png",
         normalize=True,
-        range=(-1, 1),
-        nrow=0,
     )
         
     ### The following code is copied from http://tsaith.github.io/combine-images-into-a-video-with-python-3-and-opencv-3.html ###
