@@ -54,6 +54,18 @@ if __name__ == "__main__":
         type=str,
         help="name of the closed form factorization result factor file",
     )
+    parser.add_argument(
+        "--fps",
+        type=float,
+        default=24,
+        help="fps of the video",
+    )
+    parser.add_argument(
+        "--dir_path",
+        type=string,
+        default='/kaggle/working/stylegan2-pytorch',
+        help="path to images",
+    )
 
     args = parser.parse_args()
 
@@ -83,39 +95,16 @@ if __name__ == "__main__":
         normalize=True,
     )
         
-    ### The following code is copied from http://tsaith.github.io/combine-images-into-a-video-with-python-3-and-opencv-3.html ###
-    dir_path = '.'
-    ext = f"{args.out_prefix}.png"
-    output = f"{args.out_prefix}_index-{args.index}_degree-{args.degree}"
-    
+    ### The following code is copied from https://dev.to/slushnys/how-to-create-a-video-from-an-image-with-python-26p5 ###
     images = []
-    for f in os.listdir(dir_path):
-        if f.endswith(ext):
+        for f in os.listdir(args.dir_path):
+            if f.endswith('png):
             images.append(f)
+        
+    write_to = 'output/{}.mp4'.format(args.out_prefix) # have a folder of output where output files could be stored.
 
-    # Determine the width and height from the first image
-    image_path = os.path.join(dir_path, images[0])
-    frame = cv2.imread(image_path)
-    cv2.imshow('video',frame)
-    height, width, channels = frame.shape
+    writer = imageio.get_writer(write_to, format='mp4', mode='I', fps=args.fps)
 
-    # Define the codec and create VideoWriter object
-    fourcc = cv2.VideoWriter_fourcc(*'mp4v') # Be sure to use lower case
-    out = cv2.VideoWriter(output, fourcc, 20.0, (width, height))
-
-    for image in images:
-
-        image_path = os.path.join(dir_path, image)
-        frame = cv2.imread(image_path)
-
-        out.write(frame) # Write out frame to video
-
-        cv2.imshow('video',frame)
-        if (cv2.waitKey(1) & 0xFF) == ord('q'): # Hit `q` to exit
-            break
-
-    # Release everything if job is finished
-    out.release()
-    cv2.destroyAllWindows()
-
-    print("The output video is {}".format(output))
+    for i in range(args.n_sample):
+        writer.append_data(np.asarray(images[i]))
+    writer.close()
