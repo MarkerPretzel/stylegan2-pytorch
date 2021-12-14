@@ -118,7 +118,7 @@ if __name__ == "__main__":
                     input_is_latent=True,
                 )    
                 torch.cat([img_all_idx, img], 0)
-        grid = utils.make_grid(img, normalize=True, range=(-1, 1), nrow=args.n_sample)
+        grid = utils.make_grid(img_all_idx, normalize=True, range=(-1, 1), nrow=args.n_sample)
         ndarr = grid.mul(255).add_(0.5).clamp_(0, 255).permute(1, 2, 0).to('cpu', torch.uint8).numpy()
         im = Image.fromarray(ndarr)
         images.append(im)
