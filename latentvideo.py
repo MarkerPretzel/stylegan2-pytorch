@@ -66,7 +66,7 @@ if __name__ == "__main__":
     
     degree = - args.degree
     degree_per_frame = (args.degree * 2) // args.n_sample
-    for frame in args.n_sample:
+    for frame in range(args.n_sample):
         direction = degree * eigvec[:, args.index].unsqueeze(0)
         img, _ = g(
         [latent + direction],
