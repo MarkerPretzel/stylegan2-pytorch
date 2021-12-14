@@ -55,7 +55,7 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--fps",
-        type=float,
+        type=int,
         default=24,
         help="fps of the video",
     )
