@@ -74,6 +74,12 @@ if __name__ == "__main__":
         default='/kaggle/working/stylegan2-pytorch',
         help="path to images",
     )
+    parser.add_argument(
+        "--n_idx",
+        type=int,
+        default=1,
+        help="duration of the video in seconds (integer)",
+    )
 
     args = parser.parse_args()
 
