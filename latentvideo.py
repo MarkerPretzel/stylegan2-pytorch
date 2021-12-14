@@ -61,7 +61,7 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--dir_path",
-        type=string,
+        type=str,
         default='/kaggle/working/stylegan2-pytorch',
         help="path to images",
     )
