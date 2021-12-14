@@ -92,6 +92,7 @@ if __name__ == "__main__":
     degree = - args.degree
     images = []
     for frame in range(num_frames):
+        print(degree)
         direction = degree * eigvec[:, args.index].unsqueeze(0)
         img, _ = g(
         [latent + direction],
@@ -99,7 +100,6 @@ if __name__ == "__main__":
         truncation_latent=trunc,
         input_is_latent=True,
         )    
-        print(img.shape)
         ndarr = img.mul(255).add_(0.5).clamp_(0, 255).squeeze(dim=0).permute(1, 2, 0).to('cpu', torch.uint8).numpy()
         im = Image.fromarray(ndarr)
         #im.save(f"index-{args.index}_degree-{degree}_{args.out_prefix}.png")
@@ -115,6 +115,5 @@ if __name__ == "__main__":
     writer = imageio.get_writer(write_to, format='mp4', mode='I', fps=args.fps)
 
     for i in range(num_frames):
-        print(img.size)
         writer.append_data(np.asarray(images[i]))
     writer.close()
