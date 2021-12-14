@@ -99,13 +99,10 @@ if __name__ == "__main__":
             truncation_latent=trunc,
             input_is_latent=True,
         )    
-        grid = utils.save_image(
-            img,
-            f"{args.out_prefix}_index-{args.index}_degree-{args.degree}.png",
-            normalize=True,
-            range=(-1, 1),
-            nrow=args.n_sample,
-        )
+        grid = make_grid(img, normalize=True, range=(-1, 1), nrow=args.n_sample)
+        ndarr = grid.mul(255).add_(0.5).clamp_(0, 255).permute(1, 2, 0).to('cpu', torch.uint8).numpy()
+        im = Image.fromarray(ndarr)
+        images.append(im)
         degree += degree_per_frame
         
     ### The following code is copied from https://dev.to/slushnys/how-to-create-a-video-from-an-image-with-python-26p5 ###
