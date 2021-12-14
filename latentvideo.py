@@ -116,6 +116,6 @@ if __name__ == "__main__":
 
     for i in range(num_frames):
         img = Image.open(images[i])
-        print(img.shape)
+        print(img.size)
         writer.append_data(np.asarray(img))
     writer.close()
