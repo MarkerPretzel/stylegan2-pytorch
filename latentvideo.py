@@ -97,9 +97,9 @@ if __name__ == "__main__":
         
     ### The following code is copied from https://dev.to/slushnys/how-to-create-a-video-from-an-image-with-python-26p5 ###
     images = []
-        for f in os.listdir(args.dir_path):
-            if f.endswith('png):
-            images.append(f)
+    for f in os.listdir(args.dir_path):
+        if f.endswith('png):
+        images.append(f)
         
     write_to = 'output/{}.mp4'.format(args.out_prefix) # have a folder of output where output files could be stored.
 
