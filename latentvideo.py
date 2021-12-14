@@ -60,6 +60,12 @@ if __name__ == "__main__":
         help="fps of the video",
     )
     parser.add_argument(
+        "--sec",
+        type=int,
+        default=1,
+        help="duration of the video in seconds (integer)",
+    )
+    parser.add_argument(
         "--dir_path",
         type=str,
         default='/kaggle/working/stylegan2-pytorch',
@@ -78,7 +84,7 @@ if __name__ == "__main__":
     latent = torch.randn(args.n_sample, 512, device=args.device)
     latent = g.get_latent(latent)
    
-    num_frames = args.fps * args.degree
+    num_frames = args.fps * args.sec
     degree_per_frame = (args.degree * 2) // num_frames
     degree = - args.degree
     for frame in range(num_frames):
