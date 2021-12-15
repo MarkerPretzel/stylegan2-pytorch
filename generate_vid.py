@@ -37,6 +37,9 @@ if __name__ == "__main__":
         "--size", type=int, default=256, help="output image size of the generator"
     )
     parser.add_argument(
+        "--size2", type=int, default=256, help="downsampling of image saved to video"
+    )
+    parser.add_argument(
         "-n", "--n_sample", type=int, default=7, help="number of samples created"
     )
     parser.add_argument(
@@ -118,7 +121,7 @@ if __name__ == "__main__":
                 img_all_idx = torch.cat([img_all_idx, img], 0)
         grid = utils.make_grid(img_all_idx, normalize=True, range=(-1, 1), nrow=args.n_sample)
         ndarr = grid.mul(255).add_(0.5).clamp_(0, 255).permute(1, 2, 0).to('cpu', torch.uint8).numpy()
-        im = Image.fromarray(ndarr)
+        im = Image.fromarray(ndarr).resize((args.size2, args.size2))
         images.append(im)
         degree += degree_per_frame
                 
