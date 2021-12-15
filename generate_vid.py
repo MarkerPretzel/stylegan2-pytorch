@@ -118,7 +118,7 @@ if __name__ == "__main__":
                 img_all_idx = torch.cat([img_all_idx, img], 0)
         grid = utils.make_grid(img_all_idx, normalize=True, range=(-1, 1), nrow=args.n_sample)
         ndarr = grid.mul(255).add_(0.5).clamp_(0, 255).permute(1, 2, 0).to('cpu', torch.uint8).numpy()
-        im = Image.fromarray(img).resize((args.size, args.size))
+        im = Image.fromarray(img)
         images.append(im)
         degree += degree_per_frame
                 
