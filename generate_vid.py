@@ -81,12 +81,6 @@ if __name__ == "__main__":
         default=[1],
         help="indices to travel",
     )
-    parser.add_argument(
-        "--size",
-        type=int,
-        default=256,
-        help="size of images to save to video",
-    )
 
     args = parser.parse_args()
 
