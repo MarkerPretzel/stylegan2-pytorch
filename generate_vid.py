@@ -46,7 +46,7 @@ if __name__ == "__main__":
         "--device", type=str, default="cuda", help="device to run the model"
     )
     parser.add_argument(
-        "--out_prefix",
+        "--outname",
         type=str,
         default="factor",
         help="filename prefix to result samples",
@@ -128,7 +128,7 @@ if __name__ == "__main__":
         images.append(im)
         degree += degree_per_frame
                 
-    write_to = 'output/{}.mp4'.format(args.out_prefix) # have a folder of output where output files could be stored.
+    write_to = 'output/{}.mp4'.format(args.outname) # have a folder of output where output files could be stored.
 
     writer = imageio.get_writer(write_to, format='mp4', mode='I', fps=args.fps)
 
