@@ -112,7 +112,7 @@ if __name__ == "__main__":
             truncation_latent=trunc,
             input_is_latent=True,
         )   
-        img_all_idx = torch.rot90(img_all_idk, -1)
+        img_all_idx = torch.rot90(img_all_idx, -1)
         for j, idx in enumerate(args.idxs):
             if j != 0:
                 direction = degree * eigvec[:, idx].unsqueeze(0)
