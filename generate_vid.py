@@ -131,7 +131,8 @@ if __name__ == "__main__":
     write_to = 'output/{}.mp4'.format(args.outname) # have a folder of output where output files could be stored.
 
     # information on getting better quality results from imageio videos can be found here: https://stackoverflow.com/questions/52948735/quality-loss-in-imageio
-    writer = imageio.get_writer(write_to, format='mp4', mode='I', fps=args.fps, quality=args.quality)
+    #writer = imageio.get_writer(write_to, format='mp4', mode='I', fps=args.fps, quality=args.quality)
+    writer = imageio.get_writer(write_to, format='mp4', mode='I', fps=args.fps)
 
     for i in range(num_frames):
         writer.append_data(np.asarray(images[i]))
